@@ -8,12 +8,15 @@ from db import db_helper
 from models import Base
 
 
+# TODO сделать дб молель user
+
+
 # works with async context manager
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # startup
-    async with db_helper.engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
+    # async with db_helper.engine.begin() as conn:
+    #     await conn.run_sync(Base.metadata.drop_all)  # create_all
     yield
     # shutdown
     print("dispose engine")

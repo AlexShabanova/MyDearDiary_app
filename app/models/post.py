@@ -6,7 +6,6 @@ from models import Base
 from sqlalchemy.orm import Mapped
 
 
-# TODO попробовать создать таблицу из main
 # class Post(Base):
 #     user_id = Column(Integer)
 #     create_datetime = Column(DateTime)
