@@ -1,9 +1,9 @@
 from typing import Sequence
-from sqlalchemy import select
+from sqlalchemy import select, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models import Post
-from schemas.post import PostCreate
+from schemas.post import PostCreate, PostDelete
 
 
 # TODO нужно ли отдельный класс делать?
@@ -22,3 +22,13 @@ async def create_post(session: AsyncSession, post_to_create: PostCreate) -> Post
     await session.commit()
     await session.refresh(post)
     return post
+
+
+async def delete_post(session: AsyncSession, post_to_delete: PostDelete) -> PostDelete:
+    stmt = delete(Post).where(
+        Post.user_id == post_to_delete.user_id
+        and Post.create_datetime == post_to_delete.create_datetime
+    )
+    await session.execute(stmt)
+    await session.commit()
+    return post_to_delete
