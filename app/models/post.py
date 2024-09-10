@@ -1,19 +1,11 @@
 from datetime import datetime
-
-from sqlalchemy import Column, DateTime, String, Integer
-
 from models import Base
 from sqlalchemy.orm import Mapped
 
-
-# class Post(Base):
-#     user_id = Column(Integer)
-#     create_datetime = Column(DateTime)
-#     update_datetime = Column(DateTime)
-#     text = Column(String)
+from models.mixins.int_id_pk import IntIdPkMixins
 
 
-class Post(Base):
+class Post(IntIdPkMixins, Base):
     user_id: Mapped[int]
     create_datetime: Mapped[datetime]
     update_datetime: Mapped[datetime]
