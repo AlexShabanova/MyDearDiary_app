@@ -7,12 +7,17 @@ class RunConfig(BaseModel):
     port: int = 8080
 
 
+class ApiV1Prefix(BaseModel):
+    prefix: str = "/v1"
+    posts_prefix: str = "/posts"
+
+
 class ApiPrefixConfig(BaseModel):
     prefix: str = "/api"
+    v1: ApiV1Prefix = ApiV1Prefix()
 
 
 class DatabaseConfig(BaseModel):
-    # FIXME без значения по умолчанию не работает
     # to create db engine
     url: PostgresDsn
     echo: bool = False
