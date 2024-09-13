@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column
 
 
-class IntIdPkMixins:
+class IntIdPkMixin:
     id: Mapped[int] = mapped_column(primary_key=True)
