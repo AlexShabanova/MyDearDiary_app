@@ -3,8 +3,8 @@ from fastapi.responses import ORJSONResponse
 import uvicorn
 from fastapi import FastAPI
 from api import router as api_router
+from api.deps.deps import get_db_helper
 from core.config import settings
-from db import db_helper
 
 
 # works with async context manager
@@ -13,6 +13,7 @@ async def lifespan(app: FastAPI):
     # startup
     # async with db_helper.engine.begin() as conn:
     #     await conn.run_sync(Base.metadata.drop_all)  # create_all
+    db_helper = await get_db_helper()
     yield
     # shutdown
     print("dispose engine")
