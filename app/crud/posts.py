@@ -11,7 +11,7 @@ from schemas.post import PostCreateRequest, PostDeleteRequest
 
 async def get_all_posts(session: AsyncSession) -> Sequence[Post]:
     stmt = select(Post).order_by(Post.id)
-    # TODO проверить разницу между scalars и execute
+    print(type(session))
     result = await session.scalars(stmt)
     return result.all()
 
